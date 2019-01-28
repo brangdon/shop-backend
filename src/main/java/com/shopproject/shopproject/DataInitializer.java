@@ -1,5 +1,7 @@
 package com.shopproject.shopproject;
 
+import com.shopproject.shopproject.domain.Product;
+import com.shopproject.shopproject.repository.ProductRepository;
 import com.shopproject.shopproject.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,21 +20,20 @@ public class DataInitializer implements CommandLineRunner {
     UserRepository users;
 
     @Autowired
+    ProductRepository productRepository;
+
+    @Autowired
     PasswordEncoder passwordEncoder;
 
     @Override
     public void run(String... args) throws Exception {
-//        log.debug("initializing vehicles data...");
-//        Arrays.asList("moto", "car").forEach(v -> this.vehicles.saveAndFlush(Vehicle.builder().name(v).build()));
 
-//        log.debug("printing all vehicles...");
-//        this.vehicles.findAll().forEach(v -> log.debug(" Vehicle :" + v.toString()));
+        this.users.save(new User("user", this.passwordEncoder.encode("password"), Arrays.asList("ROLE_USER")));
 
-        this.users.save(new User("user",this.passwordEncoder.encode("password"),Arrays.asList("ROLE_USER" )));
+        this.users.save(new User("admin", this.passwordEncoder.encode("password"), Arrays.asList("ROLE_USER", "ROLE_ADMIN")));
 
-        this.users.save(new User("admin",this.passwordEncoder.encode("password"),Arrays.asList("ROLE_USER","ROLE_ADMIN" )));
-
-//        log.debug("printing all users...");
-//        this.users.findAll().forEach(v -> log.debug(" User :" + v.toString()));
+        this.productRepository.save(new Product("title1", "author1", Double.valueOf(12.2),"description1", Arrays.asList("category1", "category2"), "photo1"));
+        this.productRepository.save(new Product("title2", "author2", Double.valueOf(34.4),"description2",Arrays.asList("category1", "category2", "category3"), "photo2"));
+        this.productRepository.save(new Product("title3", "author3", Double.valueOf(32.6),"description3", Arrays.asList("category3"), "photo3"));
     }
 }

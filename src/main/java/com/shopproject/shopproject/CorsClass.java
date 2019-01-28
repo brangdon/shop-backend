@@ -23,6 +23,13 @@ public class CorsClass extends WebMvcConfigurerAdapter {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/hi")
-                .allowedOrigins("http://10.254.5.76:8080", "http://10.254.5.65:8080", "http://10.254.5.64:8080", "http://10.254.5.77:8080");
+                .allowedOrigins("http://10.254.5.76:8081", "http://10.254.5.65:8081", "http://10.254.5.64:8081", "http://10.254.5.77:8081");
+
+        registry.addMapping("/auth/signin")
+                .allowedOrigins("http://10.254.5.76:3000", "http://10.254.5.65:3000", "http://10.254.5.64:3000", "http://10.254.5.77:3000");
+
+        registry.addMapping("/me")
+                .allowedOrigins("http://10.254.5.76:3000", "http://10.254.5.65:3000", "http://10.254.5.64:3000", "http://10.254.5.77:3000");
+
     }
 }

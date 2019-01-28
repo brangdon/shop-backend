@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = {"http://localhost:8080","http://10.254.5.76:8080", "http://10.254.5.65:8080", "http://10.254.5.64:8080", "http://10.254.5.77:8080"})
+@CrossOrigin(origins = {"http://localhost:3000","http://10.254.5.76:3000", "http://10.254.5.65:3000", "http://10.254.5.64:3000", "http://10.254.5.77:3000"})
 @RestController
 public class HelloController {
 

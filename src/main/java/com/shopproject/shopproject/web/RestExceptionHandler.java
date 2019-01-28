@@ -15,11 +15,11 @@ import static org.springframework.http.ResponseEntity.status;
 @Slf4j
 public class RestExceptionHandler {
 
-    @ExceptionHandler(value = {VehicleNotFoundException.class})
-    public ResponseEntity vehicleNotFound(VehicleNotFoundException ex, WebRequest request) {
-//        log.debug("handling VehicleNotFoundException...");
-        return notFound().build();
-    }
+//    @ExceptionHandler(value = {VehicleNotFoundException.class})
+//    public ResponseEntity vehicleNotFound(VehicleNotFoundException ex, WebRequest request) {
+////        log.debug("handling VehicleNotFoundException...");
+//        return notFound().build();
+//    }
 
     @ExceptionHandler(value = {InvalidJwtAuthenticationException.class})
     public ResponseEntity invalidJwtAuthentication(InvalidJwtAuthenticationException ex, WebRequest request) {
