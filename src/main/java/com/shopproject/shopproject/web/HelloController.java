@@ -1,4 +1,4 @@
-package com.shopproject.shopproject;
+package com.shopproject.shopproject.web;
 
 /**
  * Created by admin on 18.01.2019.
@@ -25,7 +25,6 @@ public class HelloController {
         return json;
     }
 
-
     @GetMapping(path = "/add", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     String registerUser() {
@@ -38,26 +37,4 @@ public class HelloController {
         String json = "[{\"message\":\"success\"}}]";
         return json;
     }
-
-//    @GetMapping(path = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
-//    public @ResponseBody
-//    String loginUser(@RequestBody Map<String, Object> data) {
-//        String name = (String) data.get("name");
-//        String email = (String) data.get("email");
-//
-//        User u = userRepository.findByUsername("aa");
-//        if (u != null) {
-//
-//            System.out.println("=== " + u.getUsername());
-//            System.out.println("=== " + u.getPassword());
-//            System.out.println("=== " + u.getEmail());
-//        } else {
-//            System.out.println("=== " + "nope");
-//        }
-//
-//        String json = "[{\"hi\":\"snail\"}, {\"name\":\"laplap\"}]";
-//        return json;
-//    }
-
-    //
 }

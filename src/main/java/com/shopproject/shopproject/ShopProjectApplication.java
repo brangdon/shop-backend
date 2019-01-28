@@ -25,7 +25,6 @@ public class ShopProjectApplication {
 	public PasswordEncoder passwordEncoder() {
 		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
 	}
-
 }
 
 @Configuration

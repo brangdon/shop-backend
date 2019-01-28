@@ -28,12 +28,38 @@ public class DataInitializer implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        this.users.save(new User("user", this.passwordEncoder.encode("password"), Arrays.asList("ROLE_USER")));
+        this.users.save(
+                new User("user",
+                        this.passwordEncoder.encode("password"),
+                        Arrays.asList("ROLE_USER")));
 
-        this.users.save(new User("admin", this.passwordEncoder.encode("password"), Arrays.asList("ROLE_USER", "ROLE_ADMIN")));
+        this.users.save(
+                new User("admin",
+                        this.passwordEncoder.encode("password"),
+                        Arrays.asList("ROLE_USER", "ROLE_ADMIN")));
 
-        this.productRepository.save(new Product("title1", "author1", Double.valueOf(12.2),"description1", Arrays.asList("category1", "category2"), "photo1"));
-        this.productRepository.save(new Product("title2", "author2", Double.valueOf(34.4),"description2",Arrays.asList("category1", "category2", "category3"), "photo2"));
-        this.productRepository.save(new Product("title3", "author3", Double.valueOf(32.6),"description3", Arrays.asList("category3"), "photo3"));
+        this.productRepository.save(
+                new Product("title1",
+                        "author1",
+                        12.2,
+                        "description1",
+                        Arrays.asList("category1", "category2"),
+                        "photo1"));
+
+        this.productRepository.save(
+                new Product("title2",
+                        "author2",
+                        34.4,
+                        "description2",
+                        Arrays.asList("category1", "category2", "category3"),
+                        "photo2"));
+
+        this.productRepository.save(
+                new Product("title3",
+                        "author3",
+                        32.6,
+                        "description3",
+                        Arrays.asList("category3"),
+                        "photo3"));
     }
 }

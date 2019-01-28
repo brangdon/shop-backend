@@ -1,7 +1,7 @@
 package com.shopproject.shopproject.domain;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 
 /**
  * Created by admin on 24.01.2019.
@@ -15,6 +15,6 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotEmpty
+    @NotBlank
     private String name;
 }

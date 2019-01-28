@@ -1,5 +1,6 @@
 package com.shopproject.shopproject.security.jwt;
 
+import com.shopproject.shopproject.exception.InvalidJwtAuthenticationException;
 import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

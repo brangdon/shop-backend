@@ -1,6 +1,5 @@
-package com.shopproject.shopproject.repository;
+package com.shopproject.shopproject.service;
 
-//import com.example.demo.repository.UserRepository;
 import com.shopproject.shopproject.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

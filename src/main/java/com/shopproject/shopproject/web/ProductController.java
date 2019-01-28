@@ -1,23 +1,15 @@
 package com.shopproject.shopproject.web;
 
 import com.shopproject.shopproject.domain.Product;
-import com.shopproject.shopproject.domain.User;
 import com.shopproject.shopproject.repository.ProductRepository;
-import com.shopproject.shopproject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.rest.webmvc.ResourceNotFoundException;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.*;
-
-import static java.util.stream.Collectors.toList;
-import static org.springframework.http.ResponseEntity.ok;
+import java.util.Optional;
 
 /**
  * Created by admin on 24.01.2019.
@@ -31,9 +23,7 @@ public class ProductController {
     ProductRepository productRepository;
 
     @GetMapping(path = "/all", produces = "application/json; charset=UTF-8")
-    public
-    @ResponseBody
-    Iterable<Product> getProducts() {
+    public @ResponseBody Iterable<Product> getProducts() {
         return productRepository.findAll();
     }
 

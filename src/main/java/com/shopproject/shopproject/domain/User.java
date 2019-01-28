@@ -1,21 +1,10 @@
 package com.shopproject.shopproject.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-/**
- * Created by admin on 22.01.2019.
- */
-//import lombok.AllArgsConstructor;
-//import lombok.Builder;
-//import lombok.Data;
-//import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -28,31 +17,44 @@ import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
+/**
+ * Created by admin on 22.01.2019.
+ */
+
 @Entity
 @Table(name="users")
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
 public class User implements UserDetails {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "user_id")
     private Long id;
 
-    @NotEmpty
+    @Column(name = "username", nullable = false)
+    @Length(min = 3, message = "*Your username must have at least 3 characters")
+    @NotEmpty(message = "*Please provide your name")
     private String username;
 
-    @NotEmpty
+    @Column(name = "password", nullable = false)
+    @Length(min = 5, message = "*Your password must have at least 5 characters")
+    @NotEmpty(message = "*Please provide your password")
+    @JsonIgnore
     private String password;
 
     @ElementCollection(fetch = FetchType.EAGER)
-//    @Builder.Default
     private List<String> roles = new ArrayList<>();
 
     public User(@NotEmpty String username, @NotEmpty String password, List<String> roles) {
         this.username = username;
         this.password = password;
         this.roles = roles;
+    }
+
+    public User() {
+        // empty
     }
 
     @Override

@@ -53,8 +53,7 @@ public class AuthController {
     }
 
     @GetMapping(path = "/signup", produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody
-    String registerUser() {
+    public @ResponseBody String registerUser() {
 
         User u = new User("aa", "bb", Arrays.asList("ROLE_USER"));
         userRepository.save(u);
@@ -64,8 +63,7 @@ public class AuthController {
     }
 
     @GetMapping(path = "/get", produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody
-    String getUser() {
+    public @ResponseBody String getUser() {
 
         Optional<User> u = userRepository.findByUsername("admin");
         if (u != null) {

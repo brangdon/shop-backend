@@ -1,9 +1,11 @@
 package com.shopproject.shopproject.domain;
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -17,24 +19,29 @@ public class Product implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "product_id")
     private Long id;
 
-    @NotEmpty
+    @Column(name = "title", nullable = false)
+    @Length(min = 5, message = "*Name must have at least 5 characters")
     private String title;
 
-    @NotEmpty
+    @Column(name = "author", nullable = false)
+    @Length(min = 5, message = "*Name must have at least 5 characters")
     private String author;
 
-//    @NotEmpty
+    @Column(name = "price", nullable = false)
+    @DecimalMin(value = "0.00", message = "*Price has to be a non negative number")
     private Double price;
 
-    @NotEmpty
+    @Column(name = "description", nullable = false)
     private String description;
 
     @ElementCollection(fetch = FetchType.EAGER)
+    @Column(name = "categories", nullable = false)
     private List<String> categories;
-    //
-    @NotEmpty
+
+    @Column(name = "photo", nullable = false)
     private String photo;
 
     public Product() {
@@ -57,7 +64,6 @@ public class Product implements Serializable {
         this.categories= p.getCategories();
         this.photo = p.getPhoto();
     }
-
 
     public String getTitle() {
         return title;
