@@ -1,4 +1,4 @@
-package com.shopproject.shopproject.web;
+package com.shopproject.shopproject.controller;
 
 import com.shopproject.shopproject.domain.Order;
 import com.shopproject.shopproject.repository.OrderRepository;

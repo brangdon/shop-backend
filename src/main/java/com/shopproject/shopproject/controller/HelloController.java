@@ -1,4 +1,4 @@
-package com.shopproject.shopproject.web;
+package com.shopproject.shopproject.controller;
 
 /**
  * Created by admin on 18.01.2019.

@@ -1,5 +1,6 @@
-package com.shopproject.shopproject.web;
+package com.shopproject.shopproject.controller;
 
+import com.shopproject.shopproject.CorsClass;
 import com.shopproject.shopproject.domain.User;
 import com.shopproject.shopproject.repository.UserRepository;
 import com.shopproject.shopproject.security.jwt.JwtTokenProvider;
@@ -34,7 +35,7 @@ public class AuthController {
     UserRepository userRepository;
 
     @PostMapping("/signin")
-    public ResponseEntity signin(@RequestBody AuthenticationRequest data) {
+    public ResponseEntity signin(@RequestBody CorsClass.AuthenticationRequest data) {
 
         try {
             String username = data.getUsername();
