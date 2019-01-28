@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
@@ -61,10 +62,15 @@ public class ProductController {
     @GetMapping("/addauth")
     public @ResponseBody String currentUser(@AuthenticationPrincipal UserDetails userDetails,@RequestBody Product product){
 
-        Product p = new Product(product);
-        productRepository.save(p);
+        if (userDetails.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
+            Product p = new Product(product);
+            productRepository.save(p);
+            String json = "[{\"message\":\"success\"}}]";
+            return json;
+        }
 
-        String json = "[{\"message\":\"success\"}}]";
+
+        String json = "[{\"message\":\"fail\"}}]";
         return json;
 
 

@@ -1,10 +1,13 @@
 package com.shopproject.shopproject.domain;
 
+import org.hibernate.mapping.Join;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by admin on 24.01.2019.
@@ -18,6 +21,10 @@ public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+//    @ManyToOne
+//    @JoinColumn(name="order_id")
+//    private Order order;
 
     @NotEmpty
     private String title;
@@ -37,10 +44,25 @@ public class Product implements Serializable {
     @NotEmpty
     private String photo;
 
+//    @ElementCollection(fetch = FetchType.EAGER)
+//    private Set<Order> orders;
+
+
     public Product() {
     }
 
-    public Product(@NotEmpty String title, @NotEmpty String author,  double price, @NotEmpty String description, List<String> categories, @NotEmpty String photo) {
+    public Product(@NotEmpty String title, @NotEmpty String author, double price, @NotEmpty String description, List<String> categories, @NotEmpty String photo) {
+        this.title = title;
+        this.author = author;
+        this.price = price;
+        this.description = description;
+        this.categories = categories;
+        this.photo = photo;
+//        this.orders = orders;
+    }
+
+    public Product(Long id, @NotEmpty String title, @NotEmpty String author, Double price, @NotEmpty String description, List<String> categories, @NotEmpty String photo) {
+        this.id = id;
         this.title = title;
         this.author = author;
         this.price = price;
@@ -58,6 +80,17 @@ public class Product implements Serializable {
         this.photo = p.getPhoto();
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
 
     public String getTitle() {
         return title;
@@ -106,4 +139,13 @@ public class Product implements Serializable {
     public void setPhoto(String photo) {
         this.photo = photo;
     }
+
+//    @ManyToMany(mappedBy = "products")
+//    public Set<Order> getOrders() {
+//        return orders;
+//    }
+//
+//    public void setOrders(Set<Order> orders) {
+//        this.orders = orders;
+//    }
 }
