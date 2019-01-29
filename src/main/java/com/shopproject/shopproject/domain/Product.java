@@ -4,11 +4,9 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Created by admin on 24.01.2019.
@@ -67,6 +65,16 @@ public class Product implements Serializable {
         this.photo = p.getPhoto();
     }
 
+    public Product(Long id, @NotEmpty String title, @NotEmpty String author, Double price, @NotEmpty String description, List<String> categories, @NotEmpty String photo) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.price = price;
+        this.description = description;
+        this.photo = photo;
+        this.categories = categories;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -81,6 +89,14 @@ public class Product implements Serializable {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public double getPrice() {
