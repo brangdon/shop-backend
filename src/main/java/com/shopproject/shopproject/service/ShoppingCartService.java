@@ -2,7 +2,6 @@ package com.shopproject.shopproject.service;
 
 import com.shopproject.shopproject.domain.Product;
 
-import java.math.BigDecimal;
 import java.util.Map;
 
 public interface ShoppingCartService {
