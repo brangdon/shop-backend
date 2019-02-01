@@ -27,7 +27,7 @@ public class CorsClass extends WebMvcConfigurerAdapter {
 
         registry.addMapping("/auth/signin")
                 .allowedOrigins("http://10.254.5.76:3000", "http://10.254.5.65:3000", "http://10.254.5.64:3000", "http://10.254.5.77:3000");
-
+        registry.addMapping("/**");
         registry.addMapping("/me")
                 .allowedOrigins("http://10.254.5.76:3000", "http://10.254.5.65:3000", "http://10.254.5.64:3000", "http://10.254.5.77:3000");
 

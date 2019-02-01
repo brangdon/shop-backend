@@ -1,4 +1,4 @@
-package com.shopproject.shopproject.web;
+package com.shopproject.shopproject.controller;
 
 import com.shopproject.shopproject.domain.Product;
 import com.shopproject.shopproject.domain.User;
@@ -32,9 +32,8 @@ public class ProductController {
     ProductRepository productRepository;
 
     @GetMapping(path = "/all", produces = "application/json; charset=UTF-8")
-    public
     @ResponseBody
-    Iterable<Product> getProducts() {
+    public Iterable<Product> getProducts() {
         return productRepository.findAll();
     }
 
@@ -48,18 +47,18 @@ public class ProductController {
         }
     }
 
-    @PostMapping(path = "/add")
-    public @ResponseBody
-    String addProduct(@RequestBody Product product) {
+//    @PostMapping(path = "/add")
+//    public @ResponseBody
+//    String addProduct(@RequestBody Product product) {
+//
+//        Product p = new Product(product);
+//        productRepository.save(p);
+//
+//        String json = "[{\"message\":\"success\"}}]";
+//        return json;
+//    }
 
-        Product p = new Product(product);
-        productRepository.save(p);
-
-        String json = "[{\"message\":\"success\"}}]";
-        return json;
-    }
-
-    @GetMapping("/addauth")
+    @PostMapping("/addauth")
     public @ResponseBody String currentUser(@AuthenticationPrincipal UserDetails userDetails,@RequestBody Product product){
 
         if (userDetails.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
@@ -69,37 +68,34 @@ public class ProductController {
             return json;
         }
 
-
         String json = "[{\"message\":\"fail\"}}]";
         return json;
-
-
     }
 
-    @DeleteMapping(path = "/{id}")
-    public ResponseEntity<?> deleteProduct(@PathVariable(value = "id") Long productID) {
-        Optional<Product> opt = productRepository.findById(productID);
-        Product product = opt.get();
+//    @DeleteMapping(path = "/{id}")
+//    public ResponseEntity<?> deleteProduct(@PathVariable(value = "id") Long productID) {
+//        Optional<Product> opt = productRepository.findById(productID);
+//        Product product = opt.get();
+//
+//        productRepository.delete(product);
+//
+//        return ResponseEntity.ok().build();
+//    }
 
-        productRepository.delete(product);
-
-        return ResponseEntity.ok().build();
-    }
-
-    @PutMapping("/{id}")
-    public Product updateProduct(@PathVariable(value = "id") Long productId,
-                           @Valid @RequestBody Product product) {
-
-        Product p = productRepository.findById(productId).get();
-
-        p.setAuthor(product.getAuthor());
-        p.setDescription(product.getDescription());
-        p.setPrice(product.getPrice());
-        p.setTitle(product.getTitle());
-        p.setCategories(product.getCategories());
-        p.setPhoto(product.getPhoto());
-
-        Product updatedProduct = productRepository.save(p);
-        return updatedProduct;
-    }
+//    @PutMapping("/{id}")
+//    public Product updateProduct(@PathVariable(value = "id") Long productId,
+//                           @Valid @RequestBody Product product) {
+//
+//        Product p = productRepository.findById(productId).get();
+//
+//        p.setAuthor(product.getAuthor());
+//        p.setDescription(product.getDescription());
+//        p.setPrice(product.getPrice());
+//        p.setTitle(product.getTitle());
+//        p.setCategories(product.getCategories());
+//        p.setPhoto(product.getPhoto());
+//
+//        Product updatedProduct = productRepository.save(p);
+//        return updatedProduct;
+//    }
 }

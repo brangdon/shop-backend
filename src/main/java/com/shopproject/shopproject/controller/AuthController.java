@@ -1,8 +1,10 @@
-package com.shopproject.shopproject.web;
+package com.shopproject.shopproject.controller;
 
+import com.shopproject.shopproject.domain.Product;
 import com.shopproject.shopproject.domain.User;
 import com.shopproject.shopproject.repository.UserRepository;
 import com.shopproject.shopproject.security.jwt.JwtTokenProvider;
+import com.shopproject.shopproject.web.AuthenticationRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +12,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -25,13 +28,18 @@ import static org.springframework.http.ResponseEntity.ok;
 public class AuthController {
 
     @Autowired
-    AuthenticationManager authenticationManager;
+    private AuthenticationManager authenticationManager;
 
     @Autowired
-    JwtTokenProvider jwtTokenProvider;
+    private JwtTokenProvider jwtTokenProvider;
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+
 
     @PostMapping("/signin")
     public ResponseEntity signin(@RequestBody AuthenticationRequest data) {
@@ -54,9 +62,10 @@ public class AuthController {
 
     @GetMapping(path = "/signup", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    String registerUser() {
+    String registerUser(@RequestBody User user) {
 
-        User u = new User("aa", "bb", Arrays.asList("ROLE_USER"));
+        User u = new User(user.getUsername(),  this.passwordEncoder.encode(user.getPassword()), Arrays.asList("ROLE_USER"));
+//        User u = new User(user);
         userRepository.save(u);
 
         String json = "[{\"message\":\"success\"}}]";
@@ -68,14 +77,14 @@ public class AuthController {
     String getUser() {
 
         Optional<User> u = userRepository.findByUsername("admin");
-        if (u != null) {
-
-            System.out.println("=== " + u.get().getUsername());
-            System.out.println("=== " + u.get().getPassword());
-            System.out.println("=== " + u.get().getAuthorities().toString());
-        } else {
-            System.out.println("=== " + "nope");
-        }
+//        if (u != null) {
+//
+//            System.out.println("=== " + u.get().getUsername());
+//            System.out.println("=== " + u.get().getPassword());
+//            System.out.println("=== " + u.get().getAuthorities().toString());
+//        } else {
+//            System.out.println("=== " + "nope");
+//        }
 
         String json = "[{\"hi\":\"snail\"}, {\"name\":\"laplap\"}]";
         return json;

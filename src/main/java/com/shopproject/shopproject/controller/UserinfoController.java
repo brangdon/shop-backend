@@ -1,4 +1,4 @@
-package com.shopproject.shopproject.web;
+package com.shopproject.shopproject.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.GrantedAuthority;

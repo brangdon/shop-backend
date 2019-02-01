@@ -24,13 +24,14 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
 @Entity
-@Table(name="users")
+@Table(name = "users")
 @Data
 @Builder
 @NoArgsConstructor
@@ -54,6 +55,12 @@ public class User implements UserDetails, Serializable {
         this.username = username;
         this.password = password;
         this.roles = roles;
+    }
+
+    public User(User user) {
+        this.username = user.getUsername();
+        this.password = user.getPassword();
+        this.roles = Arrays.asList("ROLE_USER");
     }
 
     @Override
