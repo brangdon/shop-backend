@@ -3,7 +3,7 @@ package com.shopproject.shopproject.domain;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 
 import java.io.Serializable;
 import java.util.ArrayList;

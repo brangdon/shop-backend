@@ -1,4 +1,4 @@
-package com.shopproject.shopproject.security.jwt;
+package com.shopproject.shopproject.exception;
 
 import org.springframework.security.core.AuthenticationException;
 

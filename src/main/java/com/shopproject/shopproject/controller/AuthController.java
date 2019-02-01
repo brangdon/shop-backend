@@ -1,6 +1,10 @@
 package com.shopproject.shopproject.controller;
 
+<<<<<<< HEAD:src/main/java/com/shopproject/shopproject/controller/AuthController.java
 import com.shopproject.shopproject.domain.Product;
+=======
+import com.shopproject.shopproject.CorsClass;
+>>>>>>> 22f7479b2f02d402e8c54ee21afcdf6be907a57b:src/main/java/com/shopproject/shopproject/controller/AuthController.java
 import com.shopproject.shopproject.domain.User;
 import com.shopproject.shopproject.repository.UserRepository;
 import com.shopproject.shopproject.security.jwt.JwtTokenProvider;
@@ -42,7 +46,7 @@ public class AuthController {
 
 
     @PostMapping("/signin")
-    public ResponseEntity signin(@RequestBody AuthenticationRequest data) {
+    public ResponseEntity signin(@RequestBody CorsClass.AuthenticationRequest data) {
 
         try {
             String username = data.getUsername();
@@ -61,8 +65,12 @@ public class AuthController {
     }
 
     @GetMapping(path = "/signup", produces = MediaType.APPLICATION_JSON_VALUE)
+<<<<<<< HEAD:src/main/java/com/shopproject/shopproject/controller/AuthController.java
     public @ResponseBody
     String registerUser(@RequestBody User user) {
+=======
+    public @ResponseBody String registerUser() {
+>>>>>>> 22f7479b2f02d402e8c54ee21afcdf6be907a57b:src/main/java/com/shopproject/shopproject/controller/AuthController.java
 
         User u = new User(user.getUsername(),  this.passwordEncoder.encode(user.getPassword()), Arrays.asList("ROLE_USER"));
 //        User u = new User(user);
@@ -73,8 +81,7 @@ public class AuthController {
     }
 
     @GetMapping(path = "/get", produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody
-    String getUser() {
+    public @ResponseBody String getUser() {
 
         Optional<User> u = userRepository.findByUsername("admin");
 //        if (u != null) {

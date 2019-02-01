@@ -1,7 +1,6 @@
 package com.shopproject.shopproject.repository;
 
 import com.shopproject.shopproject.domain.Order;
-import com.shopproject.shopproject.domain.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -16,5 +15,4 @@ public interface OrderRepository extends CrudRepository<Order, Long> {
 
 //    @Query("SELECT * FROM orders t WHERE t.user_id=user_id")
     Optional<List<Order>> findOdersByUserId(Long userId);
-
 }

@@ -1,6 +1,5 @@
-package com.shopproject.shopproject.repository;
+package com.shopproject.shopproject.service.impl;
 
-//import com.example.demo.repository.UserRepository;
 import com.shopproject.shopproject.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -8,11 +7,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CustomUserDetailsService implements UserDetailsService {
+public class CustomUserDetailsServiceImpl implements UserDetailsService {
 
     private UserRepository users;
 
-    public CustomUserDetailsService(UserRepository users) {
+    public CustomUserDetailsServiceImpl(UserRepository users) {
         this.users = users;
     }
 
